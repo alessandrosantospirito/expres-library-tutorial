@@ -24,6 +24,18 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/users", coolRouter);
 
+//Import the mongoose module
+var mongoose = require("mongoose");
+
+var mongoDB = "mongodb:library";
+mongoose.connect(mongoDB)
+
+mongoose.Promise = global.Promise;
+
+var db = mongoose.connection;
+
+db.on("error", console.error.bind(console,"MongoDB no connection"))
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
