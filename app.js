@@ -27,7 +27,7 @@ app.use("/users", coolRouter);
 //Import the mongoose module
 var mongoose = require("mongoose");
 
-var mongoDB = "mongodb:library";
+var mongoDB = "mongodb://localhost/library";
 mongoose.connect(mongoDB)
 
 mongoose.Promise = global.Promise;
