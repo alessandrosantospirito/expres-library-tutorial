@@ -4,9 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var coolRouter = require("./routes/cool");
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var catalogRouter = require('./routes/catalog');
 
 var app = express();
 
@@ -20,16 +20,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/users", coolRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter); 
 
 //Import the mongoose module
 var mongoose = require("mongoose");
 
-var mongoDB = "mongodb://localhost/library";
+var mongoDB = "mongodb://test:password01@ds161092.mlab.com:61092/local_library_project";
 mongoose.connect(mongoDB)
-
+// Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
